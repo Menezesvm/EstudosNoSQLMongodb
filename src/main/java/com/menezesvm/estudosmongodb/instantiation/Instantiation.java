@@ -2,6 +2,7 @@ package com.menezesvm.estudosmongodb.instantiation;
 
 import com.menezesvm.estudosmongodb.domain.Post;
 import com.menezesvm.estudosmongodb.domain.User;
+import com.menezesvm.estudosmongodb.dto.AuthorDTO;
 import com.menezesvm.estudosmongodb.repository.PostRepository;
 import com.menezesvm.estudosmongodb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,8 @@ public class Instantiation implements CommandLineRunner {
 
 		userRepository.saveAll(Arrays.asList(vinicius, flavia, isabela));
 
-		Post post1 = new Post(null, sdf.parse("10/09/2026"), "Partiu viagem!", "Vou viajar", vinicius);
-		Post post2 = new Post(null, sdf.parse("13/09/2026"), "Bom dia!", "Acordei bem hoje", flavia);
+		Post post1 = new Post(null, sdf.parse("10/09/2026"), "Partiu viagem!", "Vou viajar", new AuthorDTO(vinicius));
+		Post post2 = new Post(null, sdf.parse("13/09/2026"), "Bom dia!", "Acordei bem hoje", new AuthorDTO(flavia));
 
 		postRepository.saveAll(Arrays.asList(post1, post2));
 
