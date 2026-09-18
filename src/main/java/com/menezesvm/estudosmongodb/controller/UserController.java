@@ -1,5 +1,6 @@
 package com.menezesvm.estudosmongodb.controller;
 
+import com.menezesvm.estudosmongodb.domain.Post;
 import com.menezesvm.estudosmongodb.domain.User;
 import com.menezesvm.estudosmongodb.dto.UserDTO;
 import com.menezesvm.estudosmongodb.service.UserService;
@@ -52,5 +53,10 @@ public class UserController {
 		obj.setId(id);
 		service.update(obj);
 		return ResponseEntity.noContent().build();
+	}
+	@RequestMapping(value = "/{id}/posts", method = RequestMethod.GET)
+	public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+		User obj = service.findById(id);
+		return ResponseEntity.ok().body(obj.getPosts());
 	}
 }
